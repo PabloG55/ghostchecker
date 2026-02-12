@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { GoogleAnalytics } from '@next/third-parties/google';
+import Script from 'next/script';
 import { Toaster } from "@/components/ui/sonner";
 import "./globals.css";
 
@@ -106,6 +107,16 @@ export default function RootLayout({
         {/* Google Analytics - Modern Next.js integration */}
         {process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID && (
           <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID} />
+        )}
+        
+        {/* Google AdSense */}
+        {process.env.NEXT_PUBLIC_ADSENSE_PUBLISHER_ID && (
+          <Script
+            async
+            src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${process.env.NEXT_PUBLIC_ADSENSE_PUBLISHER_ID}`}
+            crossOrigin="anonymous"
+            strategy="afterInteractive"
+          />
         )}
       </body>
     </html>
